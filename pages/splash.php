@@ -6,4 +6,4 @@
 	$canvaspage = urlencode('https://apps.facebook.com/philipgraphtest/');
 ?>
 <p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $facebook->getLoginUrl(array('scope' => 'publish_actions')); ?>';">Install application</a></p>
-<p><a href="javascript:void(0);" onClick="top.location.href='https://www.facebook.com/dialog/oauth?client_id=<?php echo $facebook->getAppId(); ?>&redirect_uri=<?php echo $canvaspage; ?>&scope=email,read_stream';">Install application (alternative way)</a></p>
+<p><a href="javascript:void(0);" onClick="top.location.href='https://www.facebook.com/dialog/oauth?client_id=<?php echo $facebook->getAppId(); ?>&redirect_uri=<?php echo $canvaspage; ?>&scope=publish_actions';">Install application (alternative way)</a></p>
