@@ -16,6 +16,8 @@
 	// Facebook will provide the access token if the app is authenticated
 	if (is_array($request_data) && array_key_exists('oauth_token', $request_data)) {
 		$facebook->setAccessToken($request_data['oauth_token']);
+	} elseif (!is_array($request_data)) {
+		die('Not on Facebook');
 	}
 	
 	$user = $facebook->getUser();
@@ -39,3 +41,5 @@
 		
 		require('../pages/index.php');
 	}
+	
+	echo 'Get the code for this app at <a href="https://github.com/lsproc/Graph-API-test">Github</a>';
