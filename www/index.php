@@ -21,7 +21,7 @@
 	}
 	
 	$user = $facebook->getUser();
-
+var_dump($user);
 	// We can't obtain data from the /me node in the Facebook graph API if we are not authenticated
 	// There must be a better way of doing this...
 	try {
