@@ -3,6 +3,7 @@
 <p>To authenticate (install) the application, click the link below. This should also grant access to post social activities to your stream.</p>
 <?php
 	// Create login link (install the app link). We do this in JS so we can manipulate the frame that the app exists in (it is in an iframe), and we set the redirect link back to the app's page
-	$canvas_url = 'https://www.facebook.com/apps/application.php?id='.$facebook->getAppId(); // No. It is not possible to just obtain the app URL from the graph API. That's because you need to be logged in. The number of periods in this sentence give an idea to my disatifaction with this.
+	$canvaspage = urlencode('https://apps.facebook.com/philipgraphtest/');
 ?>
-<p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $facebook->getLoginUrl(array('scope' => 'publish_actions', 'redirect_uri' => urlencode($canvas_page))); ?>';">Install application</a></p>
+<p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $facebook->getLoginUrl(array('scope' => 'publish_actions')); ?>';">Install application</a></p>
+<p><a href="javascript:void(0);" onClick="top.location.href='https://www.facebook.com/dialog/oauth?client_id=<?php echo $facebook->getAppId(); ?>&redirect_uri=<?php echo $canvaspage; ?>&scope=email,read_stream';">Install application (alternative way)</a></p>
