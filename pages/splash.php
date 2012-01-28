@@ -15,7 +15,7 @@
 	 * We use scope to specify what actions we want the application to have. publish_actions lets us say that
 	 * 'Joe did Something'.
 	 */
-	$canvaspage = 'https://apps.facebook.com/philipgraphtest/';
+	global $canvaspage;
 	$login_url = $facebook->getLoginUrl(array('scope' => 'publish_actions', 'redirect_uri' => $canvaspage));
 ?>
 <p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $login_url; ?>';">Install application</a></p>
