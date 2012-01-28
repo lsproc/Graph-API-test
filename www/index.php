@@ -10,18 +10,18 @@
 		'secret' => $appsecret
 	));
 
-	// Obtain data from facebook
-	$request_data = json_decode(base64_decode(strtr($_POST['signed_request'], '-_', '+/')));
+	// Obtain data from facebook, strstr
+	$request_data = $facebook->getSignedRequest();
 	
 	// Facebook will provide the access token if the app is authenticated
-	if (array_key_exists('oauth_token', $request_data))
-	{
+	if (is_array($request_data) && array_key_exists('oauth_token', $request_data)) {
 		$facebook->setAccessToken($request_data['oauth_token']);
 	}
 	
 	$user = $facebook->getUser();
 
 	// We can't obtain data from the /me node in the Facebook graph API if we are not authenticated
+	// There must be a better way of doing this...
 	try {
 		$user_profile = $facebook->api('/me');
 	} catch(FacebookApiException $e) {
