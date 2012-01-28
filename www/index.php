@@ -21,9 +21,10 @@
 	}
 	
 	$user = $facebook->getUser();
-var_dump($user);
+
 	// We can't obtain data from the /me node in the Facebook graph API if we are not authenticated
 	// There must be a better way of doing this...
+	/*
 	try {
 		$user_profile = $facebook->api('/me');
 	} catch(FacebookApiException $e) {
@@ -35,6 +36,23 @@ var_dump($user);
 
 	if($user) {
 		// We are authenticated
+		$name = $user_profile['name'];
+		
+		echo 'We have access to the Facebook API. Your name is: '.$name;
+		
+		require('../pages/index.php');
+	}*/
+	
+	// Oh look, there is! The user is 0 if not authenticated.
+	
+	if ($user == 0) {
+		// Unauthenticated
+		
+		echo 'uid: 0 - unauthenticated';
+		
+		require('../pages/splash.php');
+	} else {
+		$user_profile = $facebook->api('/me');
 		$name = $user_profile['name'];
 		
 		echo 'We have access to the Facebook API. Your name is: '.$name;
