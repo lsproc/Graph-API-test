@@ -5,5 +5,5 @@
 	// Create login link (install the app link). We do this in JS so we can manipulate the frame that the app exists in (it is in an iframe), and we set the redirect link back to the app's page
 	$canvaspage = urlencode('https://apps.facebook.com/philipgraphtest/');
 ?>
-<p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $facebook->getLoginUrl(array('scope' => 'publish_actions')); ?>';">Install application</a></p>
+<p><a href="javascript:void(0);" onClick="top.location.href='<?php echo $facebook->getLoginUrl(array('scope' => 'publish_actions', 'redirect_uri' => $canvaspage)); ?>';">Install application</a></p>
 <p><a href="javascript:void(0);" onClick="top.location.href='https://www.facebook.com/dialog/oauth?client_id=<?php echo $facebook->getAppId(); ?>&redirect_uri=<?php echo $canvaspage; ?>&scope=publish_actions';">Install application (alternative way)</a></p>
