@@ -17,34 +17,13 @@
 	if (is_array($request_data) && array_key_exists('oauth_token', $request_data)) {
 		$facebook->setAccessToken($request_data['oauth_token']);
 	} elseif (!is_array($request_data)) {
+		// If we have not got any request data, we haven't come fom Facebook
 		die('Not on Facebook');
 	}
 	
 	$user = $facebook->getUser();
-
-	// We can't obtain data from the /me node in the Facebook graph API if we are not authenticated
-	// There must be a better way of doing this...
-	/*
-	try {
-		$user_profile = $facebook->api('/me');
-	} catch(FacebookApiException $e) {
-		$user = null;
-		echo 'We did not get permission to access the Facebook API';
-		
-		require('../pages/splash.php');
-	}
-
-	if($user) {
-		// We are authenticated
-		$name = $user_profile['name'];
-		
-		echo 'We have access to the Facebook API. Your name is: '.$name;
-		
-		require('../pages/index.php');
-	}*/
 	
-	// Oh look, there is! The user is 0 if not authenticated.
-	
+	// There is no user if we are unauthenticated for this app.
 	if ($user == 0) {
 		// Unauthenticated
 		
@@ -52,6 +31,7 @@
 		
 		require('../pages/splash.php');
 	} else {
+		// We should have API access
 		$user_profile = $facebook->api('/me');
 		$name = $user_profile['name'];
 		
@@ -60,4 +40,4 @@
 		require('../pages/index.php');
 	}
 	
-	echo 'Get the code for this app at <a href="https://github.com/lsproc/Graph-API-test">Github</a>';
+	echo '<p>Get the code for this app at <a href="https://github.com/lsproc/Graph-API-test">Github</a></p>';
